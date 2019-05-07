@@ -1,10 +1,14 @@
 -----------------------------------
+--  MOB: Steelfleece Baldarich
 -- Area: Nyzul Isle
---  NM:  Steelfleece_Baldarich
+-- Info: NM
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/zones/Nyzul_Isle/globals")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.THE_HORNSPLITTER);
-end;
+    local instance = mob:getInstance()
+    if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+        instance:setProgress(instance:getProgress() + 1)
+    end
+end
